@@ -9,14 +9,14 @@ interface Iprops {
 }
 
 type Tform = {
-  todo: string
-}
+  todo: string;
+};
 
-const TodoForm: React.FC<Iprops> = () => {
+const TodoForm: React.FC<Iprops> = ({ setTodosArray, todosArray }) => {
   const { register, handleSubmit, reset } = useForm<Tform>();
 
-  const addTodo: SubmitHandler<Tform> = data => {
-    console.log(data);
+  const addTodo: SubmitHandler<Tform> = (data) => {
+    setTodosArray((prev) => [...prev, { todo: data.todo, isDone: false }]);
     reset();
   };
 
@@ -25,7 +25,7 @@ const TodoForm: React.FC<Iprops> = () => {
       <input
         type="text"
         placeholder="New todo"
-        {...(register("todo", { required: true }))}
+        {...register("todo", { required: true })}
       />
       <button type="submit">Add</button>
     </form>
