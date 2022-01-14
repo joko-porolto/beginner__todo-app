@@ -1,11 +1,14 @@
 import { useState } from "react";
 import TodoForm from "./components/TodoForm";
+import TodoItems from "./components/TodoItems";
 
 interface Istate {
-  todosArray: {
-    todo: string;
-    isDone: boolean;
-  }[];
+  todosArray: Itodo[];
+}
+
+interface Itodo {
+  todo: string;
+  isDone: boolean;
 }
 
 function App() {
@@ -14,9 +17,10 @@ function App() {
   return (
     <div>
       <TodoForm todosArray={todosArray} setTodosArray={setTodosArray} />
+      <TodoItems todosArray={todosArray} />
     </div>
   );
 }
 
-export type { Istate };
+export type { Istate, Itodo };
 export default App;
